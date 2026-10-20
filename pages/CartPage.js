@@ -3,8 +3,8 @@ exports.CartPage = class CartPage {
         this.page = page;
         this.url = "/cart.html";
         this.title = page.locator('[data-test="title"]');
-        this.cardItem = page.locator('[data-test="inventory-item]');
-        this.continueShoppingButton = page.locator('[data-test="continue-shopping]');
+        this.cartItems = page.locator('[data-test="inventory-item"]');
+        this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
         this.checkoutButton = page.locator('[data-test="checkout"]');
     }
   
@@ -12,7 +12,7 @@ exports.CartPage = class CartPage {
         await this.continueShoppingButton.click();
 
 }
-async logout(){
+async checkout(){
     await this.checkoutButton.click();
 }
 

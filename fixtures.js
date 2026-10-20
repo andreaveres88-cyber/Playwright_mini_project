@@ -1,6 +1,7 @@
 const base = require('@playwright/test');
 const { LoginPage } = require('./pages/LoginPage');
 const { InventoryPage } = require('./pages/InventoryPage');
+const {CartPage} = require ('./pages/CartPage');
 const { USERS, PASSWORD } = require('./test-data/users');
 
 exports.test = base.test.extend({
@@ -16,6 +17,12 @@ exports.test = base.test.extend({
 
         await use(inventoryPage);
     },
+
+    //gives the testa CartPage object
+    cartPage: async ({page}, use) => {
+        const cartPage = new CartPage(page);
+        await use (cartPage);
+    }
 });
 
 exports.expect = base.expect;
