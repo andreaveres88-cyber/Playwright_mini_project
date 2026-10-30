@@ -5,28 +5,28 @@ exports.CheckoutPage = class CheckoutPage {
         this.overviewUrl = "/checkout-step-two.html";
         this.completeUrl = "/checkout-complete.html";
 
-        this.title = page.locator('[data-test="title"]');
+        this.title = page.getByTestId('title');
 
         //step one your information
-        this.firstNameInput = page.locator('[data-test="firstName"]');
-        this.lastNameInput = page.locator('[data-test="lastName"]');
-        this.postalCodeInput = page.locator('[data-test="postalCode"]');
-        this.continueButton = page.locator('[data-test="continue"]');
-        this.cancelButton = page.locator('[data-test="cancel"]');
-        this.errorMessage = page.locator('[data-test="error"]');
+        this.firstNameInput = page.getByTestId('firstName');
+        this.lastNameInput = page.getByTestId('lastName');
+        this.postalCodeInput = page.getByTestId('postalCode');
+        this.continueButton = page.getByTestId('continue');
+        this.cancelButton = page.getByTestId('cancel');
+        this.errorMessage = page.getByTestId('error');
 
 
 
         //step 2 overview
-        this.overviewItems = page.locator('[data-test="inventory-item"]');
-        this.subtotalLabel = page.locator('[data-test="subtotal-label"]');
-        this.taxLabel = page.locator('[data-test="tax-label"]');
-        this.totalLabel = page.locator('[data-test="total-label"]');
-        this.finishButton = page.locator('[data-test="finish"]');
+        this.overviewItems = page.getByTestId('inventory-item');
+        this.subtotalLabel = page.getByTestId('subtotal-label');
+        this.taxLabel = page.getByTestId('tax-label');
+        this.totalLabel = page.getByTestId('total-label');
+        this.finishButton = page.getByTestId('finish');
 
         //step 3 complete
-        this.completeHeader = page.locator('[data-test="complete-header"]');
-        this.backHomeButton = page.locator('[data-test="back-to-products"]');
+        this.completeHeader = page.getByTestId('complete-header');
+        this.backHomeButton = page.getByTestId('back-to-products');
 
 
     }

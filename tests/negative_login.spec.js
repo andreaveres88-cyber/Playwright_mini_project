@@ -62,7 +62,7 @@ test.describe("Login functionality-negative scenarios", () => {
     //locked out user validation
 
     test("Unsuccessful login with locked out user", async ({ page }) => {
-        await loginPage.login("locked_out_user", "secret_sauce");
+        await loginPage.login(USERS.lockedOut, PASSWORD);
         await expect(loginPage.errorMessage).toHaveText('Epic sadface: Sorry, this user has been locked out.');
 
         // User should stay on the login page
