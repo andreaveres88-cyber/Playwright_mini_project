@@ -18,6 +18,7 @@ const listPrice = await item.locator('[data-test="inventory-item-price"]').textC
 await inventoryPage.openProduct(productName);
 
 await expect(page).toHaveURL(productPage.urlPattern);
+await expect(productPage.backToProductsButton).toBeVisible();
 await expect (productPage.name).toHaveText(productName);
 await expect(productPage.description).toHaveText(listDescription);
 await expect(productPage.price).toHaveText(listPrice);
