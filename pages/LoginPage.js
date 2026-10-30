@@ -6,11 +6,11 @@ exports.LoginPage = class LoginPage {
         this.page = page; //cuva page objekat koji je prosledjen kroz konstruktor,u instancu klase, kako bi sve metode te klase mogle da ga koriste
         
 
-        this.usernameInput = page.locator('[data-test="username"]');
-        this.passwordInput = page.locator('[data-test="password"]')
-        this.loginButton = page.locator('[data-test="login-button"]');
+        this.usernameInput = page.getByTestId('username');
+        this.passwordInput = page.getByTestId('password');
+        this.loginButton = page.getByTestId('login-button');
 
-        this.errorMessage = page.locator('[data-test="error"]');
+        this.errorMessage = page.getByTestId('error');
         this.url = '/';
     }
 

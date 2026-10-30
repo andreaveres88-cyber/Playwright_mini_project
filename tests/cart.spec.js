@@ -32,4 +32,6 @@ test.describe("Cart functionality", () => {
         await expect(inventoryPage.getItemButton("Sauce Labs Backpack")).toHaveText("Add to cart");
     });
 
+
+
 });

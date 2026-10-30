@@ -3,6 +3,7 @@ const { LoginPage } = require('./pages/LoginPage');
 const { InventoryPage } = require('./pages/InventoryPage');
 const {CartPage} = require ('./pages/CartPage');
 const {CheckoutPage}= require ('./pages/CheckoutPage');
+const {ProductPage}= require ('./pages/ProductPage');
 const { USERS, PASSWORD } = require('./test-data/users');
 
 exports.test = base.test.extend({
@@ -29,6 +30,12 @@ exports.test = base.test.extend({
     checkoutPage: async ({page}, use )=> {
         const checkoutPage=new CheckoutPage(page);
         await use (checkoutPage);
+    },
+
+    //gives the test a ProductPage object
+    productPage: async({page}, use) => {
+        const productPage = new ProductPage(page);
+        await use(productPage);
     }
 
 

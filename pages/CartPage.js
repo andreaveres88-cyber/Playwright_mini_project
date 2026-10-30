@@ -2,10 +2,10 @@ exports.CartPage = class CartPage {
     constructor(page) {
         this.page = page;
         this.url = "/cart.html";
-        this.title = page.locator('[data-test="title"]');
-        this.cartItems = page.locator('[data-test="inventory-item"]');
-        this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
-        this.checkoutButton = page.locator('[data-test="checkout"]');
+        this.title = page.getByTestId('title');
+        this.cartItems = page.getByTestId('inventory-item');
+        this.continueShoppingButton = page.getByTestId('continue-shopping');
+        this.checkoutButton = page.getByTestId('checkout');
     }
   
     async continueShopping(){
