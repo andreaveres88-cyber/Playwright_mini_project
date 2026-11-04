@@ -17,7 +17,7 @@ test.describe("Login functionality-negative scenarios", () => {
     //mandatory fields validation
 
     test("Should show error message when username is empty", async ({ page }) => {
-        await loginPage.login('', 'secret_sauce');
+        await loginPage.login('', PASSWORD);
         await expect(loginPage.errorMessage).toHaveText('Epic sadface: Username is required');
 
         // User should stay on the login page
@@ -25,7 +25,7 @@ test.describe("Login functionality-negative scenarios", () => {
     });
 
     test("Should show error message when password is empty", async ({ page }) => {
-        await loginPage.login('standard_user', '');
+        await loginPage.login(USERS.standard, '');
         await expect(loginPage.errorMessage).toHaveText('Epic sadface: Password is required');
 
         // User should stay on the login page
@@ -44,7 +44,7 @@ test.describe("Login functionality-negative scenarios", () => {
 
     test("Unsuccessful login with invalid password", async ({ page }) => {
         //Enter valid username and invalid password and click login
-        await loginPage.login('standard_user', 'secretsauce');
+        await loginPage.login(USERS.standard, 'secretsauce');
         await expect(loginPage.errorMessage).toHaveText('Epic sadface: Username and password do not match any user in this service');
 
         // User should stay on the login page
@@ -52,7 +52,7 @@ test.describe("Login functionality-negative scenarios", () => {
     });
 
     test("Unsuccessful login with invalid username", async ({ page }) => {
-        await loginPage.login('invalid_user', 'secret_sauce');
+        await loginPage.login('invalid_user', PASSWORD);
         await expect(loginPage.errorMessage).toHaveText('Epic sadface: Username and password do not match any user in this service');
 
         // User should stay on the login page
@@ -88,7 +88,7 @@ test.describe("Login functionality-negative scenarios", () => {
     test("Unsuccessful login with excessively long password string", async ({ page }) => {
         // Generate a long password string (300 characters)
         const longPassword = "a".repeat(300);
-        await loginPage.login('standard_user', longPassword);
+        await loginPage.login(USERS.standard, longPassword);
 
         await expect(loginPage.errorMessage).toBeVisible();
         await expect(loginPage.errorMessage).toContainText('Username and password do not match');
@@ -112,7 +112,7 @@ test.describe("Login functionality-negative scenarios", () => {
     //log in and log out
     test("Should not allow access to inventory page after logout", async ({ page }) => {
 
-        await loginPage.login("standard_user", "secret_sauce");
+        await loginPage.login(USERS.standard, PASSWORD);
         await expect(page).toHaveURL(inventoryPage.url);
         await inventoryPage.logout();
 
@@ -129,13 +129,13 @@ test.describe("Login functionality-negative scenarios", () => {
     //case sensitivity validation
 
     test("Unsuccessful login with uppercase letters in username", async ({ page }) => {
-        await loginPage.login("Standard_User", "secret_sauce");
+        await loginPage.login(USERS.standard.toUpperCase(), PASSWORD);
         await expect(loginPage.errorMessage).toHaveText("Epic sadface: Username and password do not match any user in this service");
         await expect(page).toHaveURL(loginPage.url);
     });
 
     test("Unsuccessful login with uppercase letters in password", async ({ page }) => {
-        await loginPage.login("standard_user", "SECRET_SAUCE");
+        await loginPage.login(USERS.standard, PASSWORD.toUpperCase());
         await expect(loginPage.errorMessage).toHaveText("Epic sadface: Username and password do not match any user in this service");
 
         await expect(page).toHaveURL(loginPage.url);
