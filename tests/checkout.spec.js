@@ -73,7 +73,7 @@ test.describe("Checkout functionality", () => {
     })
     //Checkout with 2 inventory items
 
-    test("Checkout with 2 added items in the card", async ({ checkoutPage, cartPage, inventoryPage, page }) => {
+    test("Checkout with 2 added items in the cart", async ({ checkoutPage, cartPage, inventoryPage, page }) => {
         await checkoutPage.cancel();
         await expect(page).toHaveURL(cartPage.url);
 
