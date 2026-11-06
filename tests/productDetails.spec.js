@@ -1,32 +1,30 @@
-const {test, expect} = require ('../fixtures');
+import { test, expect } from "../fixtures";
 
-test.describe ("Product details page", () =>{
+test.describe("Product details page", () => {
 
-test ("Details page shows the same name, description and price as the list", async ({inventoryPage,productPage,page})=>{
+    test("Details page shows the same name, description and price as the list", async ({ inventoryPage, productPage, page }) => {
 
-    //naziv proizvoda koji testiramo
-const productName= "Sauce Labs Bike Light";
+        //product under test
+        const productName = "Sauce Labs Bike Light";
 
-//kartica tog proizvoda na listi (lokator)
 
-const item =inventoryPage.getItem(productName);
+        //read description and price from the product list
+        const listDescription = await inventoryPage.getItemDescription(productName).textContent();
 
-//opis i cena sa LISTE
-const listDescription = await item.locator('[data-test="inventory-item-desc"]').textContent();
+        const listPrice = await inventoryPage.getItemPrice(productName).textContent();
+        await inventoryPage.openProduct(productName);
 
-const listPrice = await item.locator('[data-test="inventory-item-price"]').textContent();
-await inventoryPage.openProduct(productName);
-
-await expect(page).toHaveURL(productPage.urlPattern);
-await expect(productPage.backToProductsButton).toBeVisible();
-await expect (productPage.name).toHaveText(productName);
-await expect(productPage.description).toHaveText(listDescription);
-await expect(productPage.price).toHaveText(listPrice);
+        //details should show the same data as the list
+        await expect(page).toHaveURL(productPage.urlPattern);
+        await expect(productPage.backToProductsButton).toBeVisible();
+        await expect(productPage.name).toHaveText(productName);
+        await expect(productPage.description).toHaveText(listDescription);
+        await expect(productPage.price).toHaveText(listPrice);
 
 
 
 
-})
+    })
 
 
 })

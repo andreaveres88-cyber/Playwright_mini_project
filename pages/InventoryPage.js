@@ -18,7 +18,7 @@ exports.InventoryPage = class InventoryPage {
         await this.menuButton.click();
         await this.logoutLink.click();
     }
-//sort products: "az", "za", "lohi", "hilo"
+    //sort products: "az", "za", "lohi", "hilo"
     async sortItems(option) {
         await this.sortIcon.selectOption(option);
 
@@ -33,6 +33,12 @@ exports.InventoryPage = class InventoryPage {
     getItemButton(productName) {
         return this.getItem(productName).locator('button');
     }
+    getItemDescription(productName) {
+        return this.getItem(productName).getByTestId('inventory-item-desc');
+    }
+    getItemPrice(productName) {
+        return this.getItem(productName).getByTestId('inventory-item-price');
+    }
 
     async addToCart(productName) {
         await this.getItemButton(productName).click();
@@ -46,7 +52,7 @@ exports.InventoryPage = class InventoryPage {
         await this.cartLink.click();
     }
 
-    async openProduct(productName){
+    async openProduct(productName) {
         await this.getItem(productName).getByTestId('inventory-item-name').click();
     }
 
